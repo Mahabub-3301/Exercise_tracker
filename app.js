@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require('./track');
 
 // Create a new user
-router.post('/', async (req, res) => {
+router.post('/users', async (req, res) => {
   const user = new User({ username: req.body.username });
   await user.save();
   res.json({ username: user.username, _id: user._id });
@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 });
 
 // Add exercise
-router.post('/:id/exercises', async (req, res) => {
+router.post('/users/:id/exercises', async (req, res) => {
   const { description, duration, date } = req.body;
   const user = await User.findById(req.params.id);
   const exerciseDate = date ? new Date(date) : new Date();
@@ -40,7 +40,7 @@ router.post('/:id/exercises', async (req, res) => {
 });
 
 // Get user log
-router.get('/:id/logs', async (req, res) => {
+router.get('/users/:id/logs', async (req, res) => {
   const user = await User.findById(req.params.id);
   const { from, to, limit } = req.query;
 

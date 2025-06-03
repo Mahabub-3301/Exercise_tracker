@@ -4,10 +4,10 @@ const cors = require('cors')
 require('dotenv').config()
 const router = require('./app');
 
-app.use('/api/',router);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use('/api/',router);
 const mongoose = require('mongoose');
 
 const MONGO_URI = process.env.Mongo_URI
