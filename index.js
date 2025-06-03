@@ -4,10 +4,11 @@ const cors = require('cors')
 require('dotenv').config()
 const router = require('./app');
 
+app.use(cors())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use('/api/',router);
+app.use('/api',router);
 const mongoose = require('mongoose');
 
 const MONGO_URI = process.env.Mongo_URI
@@ -16,7 +17,7 @@ mongoose.connect(MONGO_URI,{
   useNewUrlParser: true, useUnifiedTopology: true
 })
 
-app.use(cors())
+
 app.use(express.static('public'))
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
