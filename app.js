@@ -10,7 +10,7 @@ router.post('/users', async (req, res) => {
 });
 
 // Get all users
-router.get('/', async (req, res) => {
+router.get('/users', async (req, res) => {
   const users = await User.find({}, 'username _id');
   res.json(users);
 });
